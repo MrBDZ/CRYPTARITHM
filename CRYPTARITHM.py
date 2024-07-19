@@ -1,7 +1,9 @@
 import itertools
 
 def solve_cryptarithm(equation):
-    words = equation.replace('=', '+').split('+')
+    equation = equation.replace(" ", "")
+    left_side, right_side = equation.split('=')
+    words = left_side.split('+') + [right_side]
     letters = set(''.join(words))
     
     if len(letters) > 10:
@@ -19,7 +21,16 @@ def solve_cryptarithm(equation):
     
     return "Tidak ada solusi yang ditemukan."
 
-# Contoh penggunaan
-equation = input("Masukkan persamaan Cryptarithm (misalnya SEND + MORE = MONEY): ")
-solution = solve_cryptarithm(equation)
-print("Solusi:", solution)
+def main():
+    while True:
+        equation = input("Masukkan persamaan Cryptarithm (misalnya SEND + MORE = MONEY) atau 'exit' untuk keluar: ")
+        if equation.lower() == 'exit':
+            print("Terima kasih telah menggunakan program ini. Sampai jumpa!")
+            break
+        solution = solve_cryptarithm(equation)
+        print("Solusi:", solution)
+
+# Memanggil fungsi utama untuk menjalankan program
+if __name__ == "__main__":
+    main()
+
